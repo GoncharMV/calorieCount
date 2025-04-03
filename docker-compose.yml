@@ -1,0 +1,33 @@
+version: '3.8'
+
+services:
+  cal-spring:
+    build: .
+    image: calorie-count-java
+    ports:
+      - "8080:8080"
+    environment:
+      - DB_HOST=cal-db
+      - DB_PORT=5432
+      - DB_NAME=caldb
+      - DB_USER=admin
+      - DB_PASSWORD=admin
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://cal-db:5432/caldb
+      - SPRING_DATASOURCE_USERNAME=admin
+      - SPRING_DATASOURCE_PASSWORD=admin
+    depends_on:
+      - cal-db
+
+  cal-db:
+    image: postgres:17
+    environment:
+      - POSTGRES_USER=admin
+      - POSTGRES_PASSWORD=admin
+      - POSTGRES_DB=caldb
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+
+volumes:
+  postgres_data:
