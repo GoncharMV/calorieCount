@@ -6,7 +6,7 @@ import com.grettastic.calorieCount.repo.UserRepository;
 import com.grettastic.calorieCount.requests.UserRequest;
 import com.grettastic.calorieCount.responses.UserResponse;
 import com.grettastic.calorieCount.utils.CalorieCalculator;
-import com.grettastic.calorieCount.utils.UserMapper;
+import com.grettastic.calorieCount.utils.mapper.UserMapper;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,12 +29,17 @@ public class UserService {
         savedUser.setGoal(user.getGoal());
         savedUser.setCalNorm(CalorieCalculator.calculateCalNorm(user.getHeight(), user.getWeight(),
                 user.getAge(), isUserFemale(savedUser), user.getActivityLevel()));
+
         return UserMapper.toUserResponse(userRepo.save(savedUser));
     }
 
     public UserResponse getUserById(Long id) {
-        return UserMapper.toUserResponse(userRepo.findById(id).orElseThrow(()
-                -> new EntityNotFoundException("User not found")));
+        return UserMapper.toUserResponse(getUser(id));
+    }
+
+    public User getUser(Long id) {
+        return userRepo.findById(id).orElseThrow(()
+                -> new EntityNotFoundException("User not found"));
     }
 
     private boolean isUserFemale(User user) {

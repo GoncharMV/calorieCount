@@ -9,6 +9,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.List;
+
 @Entity
 @Table(name = "users")
 @Getter
@@ -16,10 +18,13 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 public class User {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
+
+    @Column(unique = true)
     private String email;
     private int age;
     private double weight;
@@ -35,4 +40,6 @@ public class User {
     private Goal goal;
     private double calNorm;
 
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private List<Meal> meals;
 }

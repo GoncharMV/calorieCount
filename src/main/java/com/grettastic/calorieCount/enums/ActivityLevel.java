@@ -1,7 +1,7 @@
 package com.grettastic.calorieCount.enums;
 
 public enum ActivityLevel {
-    MIN(1.2),
+    LOW(1.2),
     MILD(1.375),
     AVG(1.55),
     HIGH(1.725),
