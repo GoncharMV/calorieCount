@@ -29,11 +29,14 @@ public class MealService {
         Meal savedMeal = new Meal();
         savedMeal.setDishes(dishUtil.getDishesList(meal.getDishIds()));
         savedMeal.setUser(userUtil.getUserById(userId));
+
         return MealMapper.toMealResponse(mealRepo.save(savedMeal));
     }
 
     public List<MealResponse> getUserMeals(Long userId) {
-        return null;
+        User user = userUtil.getUserById(userId);
+
+        return MealMapper.toMealResponseList(mealRepo.findAllByUser(user));
     }
 
     public Double getDailyCalories(Long userId, LocalDate date) {

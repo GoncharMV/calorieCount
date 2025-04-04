@@ -15,4 +15,6 @@ public interface MealRepository extends JpaRepository<Meal, Long> {
 
     List<Meal> findByUserAndDateBetween(User user, LocalDate startDate, LocalDate endDate);
 
+    List<Meal> findAllByUser(User user);
+
 }
