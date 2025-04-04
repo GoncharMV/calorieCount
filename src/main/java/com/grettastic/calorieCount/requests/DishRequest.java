@@ -18,12 +18,9 @@ public class DishRequest {
     @NotNull
     private int caloriesPerServing;
 
-    @NotNull
     private double proteins;
 
-    @NotNull
     private double fats;
 
-    @NotNull
     private double carbs;
 }

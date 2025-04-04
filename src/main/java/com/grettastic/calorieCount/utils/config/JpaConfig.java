@@ -1,4 +1,4 @@
-package com.grettastic.calorieCount.utils;
+package com.grettastic.calorieCount.utils.config;
 
 import jakarta.persistence.EntityManagerFactory;
 import org.springframework.boot.jdbc.DataSourceBuilder;

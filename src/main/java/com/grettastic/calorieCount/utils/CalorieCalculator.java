@@ -5,6 +5,7 @@ import lombok.experimental.UtilityClass;
 
 @UtilityClass
 public class CalorieCalculator {
+
     public double calculateCalNorm(double height, double weight, int age, boolean isFemale, ActivityLevel activityLevel) {
         double bmr = calcBMR(height, weight, age, isFemale);
         return bmr * activityLevel.getValue();

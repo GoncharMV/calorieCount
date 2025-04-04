@@ -3,12 +3,14 @@ package com.grettastic.calorieCount.utils;
 import com.grettastic.calorieCount.models.Dish;
 import com.grettastic.calorieCount.services.DishService;
 import lombok.RequiredArgsConstructor;
-import lombok.experimental.UtilityClass;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
 
-@RequiredArgsConstructor
+@Component
+@RequiredArgsConstructor(onConstructor_ = @Autowired)
 public class DishUtil {
 
     private final DishService dishService;
@@ -23,3 +25,4 @@ public class DishUtil {
         return dishes;
     }
 }
+
